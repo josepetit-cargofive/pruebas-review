@@ -17,7 +17,7 @@ labels:
     color: "#c90076"
   waiting-for-review:
     description: Pull request is waiting for review
-    color: "#0E8A16"
+    color: "#FBCA04"
   waiting-for-merge:
     description: Pull request is reviewed
     color: "#0E8A16"
@@ -110,7 +110,10 @@ workflows:
     run:
       # Label pull requests with `waiting-for-review` if there are no approvals;
       - if: $isDraft() == false && $approvalsCount() > 0
-        then: $addLabel("waiting-for-merge")
+        then: 
+          - $addLabel("waiting-for-merge")
+          - $removeLabel("waiting-for-review")
+
 
   # This workflow labels pull requests based on the pull request change type.
   # This helps pick pull requests based on their change type.
