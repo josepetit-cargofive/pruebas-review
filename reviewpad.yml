@@ -17,9 +17,12 @@ labels:
     color: "#c90076"
   waiting-for-review:
     description: Pull request is waiting for review
-    color: "#FBCA04"
+    color: "#D93F0B"
   waiting-for-merge:
     description: Pull request is reviewed
+    color: "#FBCA04"
+  merged:
+    description: Pull request is merged
     color: "#0E8A16"
 
 # Define the list of workflows to be run by Reviewpad.
@@ -109,7 +112,7 @@ workflows:
     description: Check that pull requests have been reviewed and ready to merge
     run:
       # Label pull requests with `waiting-for-review` if there are no approvals;
-      - if: $isDraft() == false && $approvalsCount() > 0
+      - if: $isDraft() == false && $approvalsCount() == $totalCodeReviews($author())
         then: 
           - $addLabel("waiting-for-merge")
           - $removeLabel("waiting-for-review")
