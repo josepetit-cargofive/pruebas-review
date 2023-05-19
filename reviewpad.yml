@@ -17,7 +17,7 @@ labels:
     color: "#c90076"
   waiting-for-review:
     description: Pull request is waiting for review
-    color: "#0E8A16"
+    color: "#FBCA04"
   waiting-for-merge:
     description: Pull request is reviewed
     color: "#0E8A16"
